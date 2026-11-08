@@ -1,5 +1,8 @@
 # Taskline UI samples
 
+# !!! REQUIRED TO ADD OVERDUE SCENERIO, DYNAMIC TRANSFORMING FROM yyyy-mm-dd TO REMAINING DAYS
+# !!! AND TO WORK WITH DYNAMIC AMOUND OF DAYS LEFT + DYNAMIC LENGTH OF INDEX (1) (10) + DYNAMIC LENGTH OF DEADLINE
+
 class Task:
     def __init__(self, body, deadline="----", priority="--"):
         self.body = body
