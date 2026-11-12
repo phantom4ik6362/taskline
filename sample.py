@@ -1,10 +1,12 @@
+from datetime import datetime
+
 # Taskline UI samples
 
 # !!! REQUIRED TO ADD OVERDUE SCENERIO, DYNAMIC TRANSFORMING FROM yyyy-mm-dd TO REMAINING DAYS
 # !!! AND TO WORK WITH DYNAMIC AMOUND OF DAYS LEFT + DYNAMIC LENGTH OF INDEX (1) (10) + DYNAMIC LENGTH OF DEADLINE
 
 class Task:
-    def __init__(self, body, deadline="----", priority="--"):
+    def __init__(self, body, deadline=None, priority="--"):
         self.body = body
         self.deadline = deadline
         self.priority = priority
@@ -13,11 +15,11 @@ class Task:
         self.status = "done"
 
 
-task1 = Task("clean", "+04d", "08")
-task2 = Task("shower gel", "+75d", "07")
-task3 = Task("bugs", "----", "10")
+task1 = Task("clean", "16-11-2026", "08")
+task2 = Task("shower gel", "22-12-2026", "07")
+task3 = Task("bugs", "12-11-2026", "10")
 task4 = Task("123451234512345123451235123")
-task5 = Task("A", "+03d")
+task5 = Task("A")
 tasks = [task1, task2, task3, task4, task5]
 # 17 symb per task
 # within contract, expects max 99 tasks, and max 34 symbols oper tasks in total
@@ -25,7 +27,25 @@ def build_list(tasks):
     string = f""
     index = 1
     line_width = 17
+    format_str = "%d-%m-%Y"
+    today_date = datetime.now().date()
     for task in tasks:
+        deadline_status = "----"
+        if task.deadline:
+            deadline_date = datetime.strptime(task.deadline, format_str).date()
+            remaining_days = deadline_date - today_date
+            if remaining_days.days < 0:
+                task.status = "overdue"
+                deadline_status = "ovrd"
+            elif remaining_days.days in range(0, 10):
+                deadline_status = f"-0{remaining_days.days}d"
+            else:
+                deadline_status = f"-{remaining_days.days}d"
+        if task.priority:
+            task_priority = task.priority
+        else:
+            task_priority = "--"
+        
         if index > 9:
             dynamic_id = index
         else:
@@ -48,7 +68,7 @@ def build_list(tasks):
             
             formatted_body = part1 + "\n     " + part2
         
-        string += f"({dynamic_id}) {formatted_body} | {task.deadline} | {task.priority}\n"
+        string += f"({dynamic_id}) {formatted_body} | {deadline_status} | {task_priority}\n"
         index += 1
     return string
 
