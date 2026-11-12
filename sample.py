@@ -5,6 +5,8 @@ from datetime import datetime
 # !!! REQUIRED TO ADD OVERDUE SCENERIO, DYNAMIC TRANSFORMING FROM yyyy-mm-dd TO REMAINING DAYS
 # !!! AND TO WORK WITH DYNAMIC AMOUND OF DAYS LEFT + DYNAMIC LENGTH OF INDEX (1) (10) + DYNAMIC LENGTH OF DEADLINE
 
+# !!! CREATE LOGIC TO AVOID PROBLEM WITH 99+ days LEFT
+# FIX STATUS CHANGE ADDED IN LINE 40
 class Task:
     def __init__(self, body, deadline=None, priority="--"):
         self.body = body
