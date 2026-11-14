@@ -37,7 +37,6 @@ def build_list(tasks):
             deadline_date = datetime.strptime(task.deadline, format_str).date()
             remaining_days = deadline_date - today_date
             if remaining_days.days < 0:
-                task.status = "overdue"
                 deadline_status = "ovrd"
             elif remaining_days.days in range(0, 10):
                 deadline_status = f"-0{remaining_days.days}d"
