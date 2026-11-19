@@ -1,0 +1,1 @@
+# This file handles file management operations, including handling corrupted file crash by itself.
