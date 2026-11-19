@@ -12,6 +12,8 @@ class Task:
         self.status = "todo"
     def complete(self):
         self.status = "done"
+    def return_dict(self):
+        return {"body": self.body, "deadline": self.deadline, "priority": self.priority, "status": self.status}
 
 
 task1 = Task("clean", "2026-11-16", 8)
