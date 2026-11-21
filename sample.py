@@ -18,8 +18,8 @@ class Task:
 
 task1 = Task("clean", "2026-11-16", 8)
 task2 = Task("shower gel", "2026-12-22", 7)
-task3 = Task("bugs", "2026-11-12", 10)
-task4 = Task("ggggggggggggggggg")
+task3 = Task("bugs", "2028-11-12", 10)
+task4 = Task("ggggggggggggggggg", "2026-11-23")
 task5 = Task("A")
 tasks = [task1, task2, task3, task4, task5]
 
@@ -43,9 +43,11 @@ def build_list(tasks: list) -> str:
             if remaining_days.days < 0:
                 deadline_status = "ovrd"
             elif remaining_days.days in range(0, 10):
-                deadline_status = f"-0{remaining_days.days}d"
+                deadline_status = f"00{remaining_days.days}d"
+            elif remaining_days.days in range(100, 1000):
+                deadline_status = f"{remaining_days.days}d"
             else:
-                deadline_status = f"-{remaining_days.days}d"
+                deadline_status = f"0{remaining_days.days}d"
 
         if task.priority: # set priority. if less than 10, adds 0 to a start
             if int(task.priority) < 10:
