@@ -17,12 +17,13 @@ class Task:
         return {"body": self.body, "deadline": self.deadline, "priority": self.priority, "status": self.status}
 
 
-task1 = Task("clean", "2026-11-16", 8)
-task2 = Task("shower gel", "2026-12-22", 7)
-task3 = Task("bugs", "2028-11-12", 10)
+task1 = Task("clean", "2026-11-16", 3)
+task2 = Task("shower gel", "2026-12-22", 2)
+task3 = Task("bugs", "2028-11-12", 3)
 task4 = Task("ggggggggggggggggg", "2026-11-23")
-task5 = Task("A")
+task5 = Task("1234512345123412345234")
 tasks = [task1, task2, task3, task4, task5]
+
 
 ls2 = f"""
 _______TASKLINE_______
@@ -31,8 +32,16 @@ _______TASKLINE_______
 _______________________
 """
 
-print(ls2)
+hs2 = f"""
+_______COMPLETED_______
 
+{cli.build_history(tasks)}
+_______________________
+"""
+
+print(ls2)
+print("\n")
+print(hs2)
 
 ls = f""" 
 _______TASKLINE_______
